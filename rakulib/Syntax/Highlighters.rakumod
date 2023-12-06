@@ -41,6 +41,8 @@ Table of Contents
 LGPL V3.0+ L<LICENSE|https://github.com/grizzlysmit/Syntax-Highlighters/blob/main/LICENSE>
 
 
+L<Top of Document|#table-of-contents>
+
 =head1 Introduction
 
 Some syntax highlighting stuff: 

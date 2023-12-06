@@ -45,6 +45,8 @@ COPYRIGHT
 
 LGPL V3.0+ [LICENSE](https://github.com/grizzlysmit/Syntax-Highlighters/blob/main/LICENSE)
 
+[Top of Document](#table-of-contents)
+
 Introduction
 ============
 

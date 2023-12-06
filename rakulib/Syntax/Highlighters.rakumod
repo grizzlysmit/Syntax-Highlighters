@@ -97,6 +97,8 @@ class HighlighterFailed is Exception is export {
 
 =begin pod
 
+L<Top of Document|#table-of-contents>
+
 =head2 VariablesBase
 
 A grammar for parsing variable forms forms the basis of B<Variables>
@@ -122,8 +124,6 @@ grammar VariablesBase {
 }
 
 =begin pod
-
-L<Top of Document|#table-of-contents>
 
 =head2 VariablesBaseActions
 

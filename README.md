@@ -72,12 +72,12 @@ class HighlighterFailed is Exception is export {
 }
 ```
 
+[Top of Document](#table-of-contents)
+
 VariablesBase
 -------------
 
 A grammar for parsing variable forms forms the basis of **Variables** which syntax highlights variable forms.
-
-[Top of Document](#table-of-contents)
 
 VariablesBaseActions
 --------------------

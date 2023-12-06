@@ -12,22 +12,56 @@ INIT my $debug = False;
 
 #use Grammar::Tracer;
 INIT "Grammar::Debugger is on".say if $debug;
-#use Grammar::Tracer;
 
 use Terminal::ANSI::OO :t;
+
+=begin pod
+
+=begin head2
+
+Table of  Contents
+
+=end head2
+
+=item2 L<highlight-var|#highlight-var>
+=item2 L<highlight-val|#highlight-val>
+
+=NAME Syntax::Highlighters 
+=AUTHOR Francis Grizzly Smit (grizzly@smit.id.au)
+=VERSION 0.1.0
+=TITLE Gzz::Text::Utils
+=SUBTITLE A Raku module to provide text formatting services to Raku programs.
+
+=COPYRIGHT
+LGPL V3.0+ L<LICENSE|https://github.com/grizzlysmit/Gzz-Text-Utils/blob/main/LICENSE>
+
+=begin head1
+
+some syntax highlighting stuff 
+
+=end head1
+
+=end pod
  
 #`«««
     ################################################
     #**********************************************#
-    #*                                            *#
-    #*   Grammars to Syntax Highlight Raku¹ Code  *#
-    #*                and Values.                 *#
-    #*                                            *#
-    #*  1. not complete or exhaustive.            *#
-    #*                                            *#
+    #**                                          **#
+    #**  Grammars to Syntax Highlight Raku¹ Code **#
+    #**               and Values.                **#
+    #**                                          **#
+    #** 1. not complete or exhaustive.           **#
+    #**                                          **#
     #**********************************************#
     ################################################
 #»»»
+
+class HighlighterFailed is Exception is export {
+    has Str:D $.msg = 'Error: Highlighter Failed.';
+    method message( --> Str:D) {
+        $!msg;
+    }
+}
 
 
 grammar VariablesBase {
@@ -440,3 +474,17 @@ class ValueActions does ValueBaseActions is export {
         $made.make: $top;
     }
 } # class ValueActions does ValueBaseActions #
+
+sub highlight-var(Str:D $var --> Str:D) is export {
+    my $actions = VariablesActions;
+    my $tmp = Variables.parse($var, :enc('UTF-8'), :$actions).made;;
+    HighlighterFailed.new(:msg("Error: Variables.parse Failed.")).throw if $tmp === Any;
+    return $tmp;
+} # sub highlight-var(Str:D --> Str:D) is export #
+
+sub highlight-val(Str:D $val --> Str:D) is export {
+    my $actions = ValueActions;
+    my $tmp = Value.parse($val, :enc('UTF-8'), :$actions).made;;
+    HighlighterFailed.new(:msg("Error: Variables.parse Failed.")).throw if $tmp === Any;
+    return $tmp;
+} # sub highlight-val(Str:D --> Str:D) is export #

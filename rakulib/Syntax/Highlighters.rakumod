@@ -34,7 +34,7 @@ Table of Contents
 =NAME Syntax::Highlighters 
 =AUTHOR Francis Grizzly Smit (grizzly@smit.id.au)
 =VERSION 0.1.0
-=TITLE Gzz::Text::Utils
+=TITLE Syntax::Highlighters
 =SUBTITLE A Raku module to one basic syntax highlighting.
 
 =COPYRIGHT

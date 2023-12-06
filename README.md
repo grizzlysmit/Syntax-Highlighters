@@ -33,7 +33,7 @@ VERSION
 TITLE
 =====
 
-Gzz::Text::Utils
+Syntax::Highlighters
 
 SUBTITLE
 ========

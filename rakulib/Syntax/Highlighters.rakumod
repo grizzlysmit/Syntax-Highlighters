@@ -25,6 +25,9 @@ Table of  Contents
 
 =item1 L<Introduction|#introduction>
 =item1 L<HighlighterFailed|#highlighterfailed>
+=item1 L<VariablesBase|#variablesbase>
+=item1 L<VariablesBaseActions|#variablesbaseactions>
+=item1 L<Variables and VariablesActions|#variables-and-variablesactions>
 =item1 L<highlight-var|#highlight-var>
 =item1 L<highlight-val|#highlight-val>
 
@@ -86,6 +89,14 @@ class HighlighterFailed is Exception is export {
     }
 }
 
+=begin pod
+
+=head2 VariablesBase
+
+A grammar for parsing variable forms forms the basis of B<Variables>
+which syntax highlights variable forms.
+
+=end pod
 
 grammar VariablesBase {
     token var          { [ <scalar-var> || <array-var> || <hash-var> || <callable-var> ] }
@@ -103,6 +114,15 @@ grammar VariablesBase {
     token index        { '<' <identifier> '>' }
     regex identifier   { \w+ [ '-' \w+ ]* }
 }
+
+=begin pod
+
+=head2 VariablesBaseActions
+
+A role to assist in the parsing variable forms forms the basis of B<VariablesActions>
+which syntax highlights variable forms.
+
+=end pod
 
 role VariablesBaseActions {
     method identifier($/) {
@@ -226,6 +246,50 @@ role VariablesBaseActions {
 
     }
 } # role VariablesBaseActions #
+
+=begin pod
+
+=head2 Variables and VariablesActions
+
+The grammar and class pair that do the actual syntax highlighting of the variable forms.
+
+=begin code :lang<raku>
+
+grammar Variables is VariablesBase is export {
+    token TOP { <var> }
+}
+
+class VariablesActions does VariablesBaseActions is export {
+    method TOP($made) {
+        my %spec = $made<var>.made;
+        my Str $top = t.color(255,0,0) ~ %spec«sigil»;
+        if %spec«twigil» eq '<' {
+            $top ~= t.color(0,255,255) ~ '<' ~ %spec«name» ~ '>';
+        } elsif %spec«type» eq 'Failed' {
+            $top ~= t.color(255,0,0) ~ %spec«name»;
+        } else {
+            $top ~= %spec«twigil» ~ t.color(0,255,255) ~ %spec«name»;
+        }
+        if %spec«derref»:exists && (%spec«derref»«derref-char»:exists) {
+            if %spec«derref»«derref-char» eq '[' {
+                $top ~= t.color(255,0,0) ~ '[' ~ t.color(255,0,255) ~ %spec«derref»«ind» ~ t.color(255,0,0) ~ ']';
+            } elsif %spec«derref»«derref-char» eq '«' {
+                $top ~= t.color(255,74,0) ~ '«' ~ %spec«derref»«ind» ~ '»';
+            } elsif %spec«derref»«derref-char» eq '<' {
+                $top ~= t.color(255,0,0) ~ '<' ~ t.color(255,0,255) ~ %spec«derref»«ind» ~ t.color(255,0,0) ~ '>';
+            } elsif %spec«derref»«derref-char» eq '{' {
+                $top ~= t.color(255,0,0) ~ '{$' ~ t.color(255,0,255) ~ %spec«derref»«ind» ~ t.color(255,0,0) ~ '}';
+            } elsif %spec«derref»«derref-char» eq '(' {
+                $top ~= t.color(255,0,0) ~ '(' ~ t.color(255,0,255) ~ %spec«derref»«ind» ~ t.color(255,0,0) ~ ')';
+            }
+        }
+        $made.make: $top;
+    }
+}
+
+=end code
+
+=end pod
 
 grammar Variables is VariablesBase is export {
     token TOP { <var> }

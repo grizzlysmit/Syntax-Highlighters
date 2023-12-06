@@ -6,6 +6,12 @@ Introduction [#introduction]
 .IP \(bu 2m
 HighlighterFailed [#highlighterfailed]
 .IP \(bu 2m
+VariablesBase [#variablesbase]
+.IP \(bu 2m
+VariablesBaseActions [#variablesbaseactions]
+.IP \(bu 2m
+Variables and VariablesActions [#variables-and-variablesactions]
+.IP \(bu 2m
 highlight\-var [#highlight-var]
 .IP \(bu 2m
 highlight\-val [#highlight-val]
@@ -34,6 +40,53 @@ class HighlighterFailed is Exception is export {
     has Str:D $\&.msg = 'Error: Highlighter Failed\&.';
     method message( \-\-> Str:D) {
         $!msg;
+    }
+}
+
+
+.EE
+.RE
+.SS VariablesBase
+
+A grammar for parsing variable forms forms the basis of \fBVariables\fR which syntax highlights variable forms\&.
+.SS VariablesBaseActions
+
+A role to assist in the parsing variable forms forms the basis of \fBVariablesActions\fR which syntax highlights variable forms\&.
+.SS Variables and VariablesActions
+
+The grammar and class pair that do the actual syntax highlighting of the variable forms\&.
+
+.RS 4m
+.EX
+grammar Variables is VariablesBase is export {
+    token TOP { <var> }
+}
+
+class VariablesActions does VariablesBaseActions is export {
+    method TOP($made) {
+        my %spec = $made<var>\&.made;
+        my Str $top = t\&.color(255,0,0) ~ %spec«sigil»;
+        if %spec«twigil» eq '<' {
+            $top ~= t\&.color(0,255,255) ~ '<' ~ %spec«name» ~ '>';
+        } elsif %spec«type» eq 'Failed' {
+            $top ~= t\&.color(255,0,0) ~ %spec«name»;
+        } else {
+            $top ~= %spec«twigil» ~ t\&.color(0,255,255) ~ %spec«name»;
+        }
+        if %spec«derref»:exists && (%spec«derref»«derref\-char»:exists) {
+            if %spec«derref»«derref\-char» eq '[' {
+                $top ~= t\&.color(255,0,0) ~ '[' ~ t\&.color(255,0,255) ~ %spec«derref»«ind» ~ t\&.color(255,0,0) ~ ']';
+            } elsif %spec«derref»«derref\-char» eq '«' {
+                $top ~= t\&.color(255,74,0) ~ '«' ~ %spec«derref»«ind» ~ '»';
+            } elsif %spec«derref»«derref\-char» eq '<' {
+                $top ~= t\&.color(255,0,0) ~ '<' ~ t\&.color(255,0,255) ~ %spec«derref»«ind» ~ t\&.color(255,0,0) ~ '>';
+            } elsif %spec«derref»«derref\-char» eq '{' {
+                $top ~= t\&.color(255,0,0) ~ '{$' ~ t\&.color(255,0,255) ~ %spec«derref»«ind» ~ t\&.color(255,0,0) ~ '}';
+            } elsif %spec«derref»«derref\-char» eq '(' {
+                $top ~= t\&.color(255,0,0) ~ '(' ~ t\&.color(255,0,255) ~ %spec«derref»«ind» ~ t\&.color(255,0,0) ~ ')';
+            }
+        }
+        $made\&.make: $top;
     }
 }
 

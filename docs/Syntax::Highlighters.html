@@ -582,11 +582,17 @@ footer {
  <tr class="toc-level-1"><td class="toc-text"><a href="#Copyright">Copyright</a></td></tr>
  <tr class="toc-level-1"><td class="toc-text"><a href="#Introduction">Introduction</a></td></tr>
  <tr class="toc-level-1"><td class="toc-text"><a href="#HighlighterFailed">HighlighterFailed</a></td></tr>
+ <tr class="toc-level-2"><td class="toc-text"><a href="#VariablesBase">VariablesBase</a></td></tr>
+ <tr class="toc-level-2"><td class="toc-text"><a href="#VariablesBaseActions">VariablesBaseActions</a></td></tr>
+ <tr class="toc-level-2"><td class="toc-text"><a href="#Variables_and_VariablesActions">Variables and VariablesActions</a></td></tr>
 </table></div>
 </nav><div id="Gzz::Text::Utils"></div><div class="subtitle"><p>A Raku module to one basic syntax highlighting.</p></div><div class="pod-body"><section name="___top"><h2 id="Table_of_Contents"><a href="#___top" class="u" title="go to top of document">Table of Contents</a></h2>
 <ul>
 <li><p><a href="#introduction">Introduction</a></p></li>
 <li><p><a href="#highlighterfailed">HighlighterFailed</a></p></li>
+<li><p><a href="#variablesbase">VariablesBase</a></p></li>
+<li><p><a href="#variablesbaseactions">VariablesBaseActions</a></p></li>
+<li><p><a href="#variables-and-variablesactions">Variables and VariablesActions</a></p></li>
 <li><p><a href="#highlight-var">highlight-var</a></p></li>
 <li><p><a href="#highlight-val">highlight-val</a></p></li>
 </ul>
@@ -607,8 +613,43 @@ footer {
     }
 }
 
+</pre></section><section name="pod"><h2 id="VariablesBase"><a href="#Gzz::Text::Utils" class="u" title="go to top of document">VariablesBase</a></h2>
+<p>A grammar for parsing variable forms forms the basis of <strong>Variables</strong> which syntax highlights variable forms.</p></section><section name="pod"><h2 id="VariablesBaseActions"><a href="#Gzz::Text::Utils" class="u" title="go to top of document">VariablesBaseActions</a></h2>
+<p>A role to assist in the parsing variable forms forms the basis of <strong>VariablesActions</strong> which syntax highlights variable forms.</p></section><section name="pod"><h2 id="Variables_and_VariablesActions"><a href="#Gzz::Text::Utils" class="u" title="go to top of document">Variables and VariablesActions</a></h2>
+<p>The grammar and class pair that do the actual syntax highlighting of the variable forms.</p><pre class="pod-block-code">grammar Variables is VariablesBase is export {
+    token TOP { &lt;var&gt; }
+}
+
+class VariablesActions does VariablesBaseActions is export {
+    method TOP($made) {
+        my %spec = $made&lt;var&gt;.made;
+        my Str $top = t.color(255,0,0) ~ %spec«sigil»;
+        if %spec«twigil» eq '&lt;' {
+            $top ~= t.color(0,255,255) ~ '&lt;' ~ %spec«name» ~ '&gt;';
+        } elsif %spec«type» eq 'Failed' {
+            $top ~= t.color(255,0,0) ~ %spec«name»;
+        } else {
+            $top ~= %spec«twigil» ~ t.color(0,255,255) ~ %spec«name»;
+        }
+        if %spec«derref»:exists &amp;&amp; (%spec«derref»«derref-char»:exists) {
+            if %spec«derref»«derref-char» eq '[' {
+                $top ~= t.color(255,0,0) ~ '[' ~ t.color(255,0,255) ~ %spec«derref»«ind» ~ t.color(255,0,0) ~ ']';
+            } elsif %spec«derref»«derref-char» eq '«' {
+                $top ~= t.color(255,74,0) ~ '«' ~ %spec«derref»«ind» ~ '»';
+            } elsif %spec«derref»«derref-char» eq '&lt;' {
+                $top ~= t.color(255,0,0) ~ '&lt;' ~ t.color(255,0,255) ~ %spec«derref»«ind» ~ t.color(255,0,0) ~ '&gt;';
+            } elsif %spec«derref»«derref-char» eq '{' {
+                $top ~= t.color(255,0,0) ~ '{$' ~ t.color(255,0,255) ~ %spec«derref»«ind» ~ t.color(255,0,0) ~ '}';
+            } elsif %spec«derref»«derref-char» eq '(' {
+                $top ~= t.color(255,0,0) ~ '(' ~ t.color(255,0,255) ~ %spec«derref»«ind» ~ t.color(255,0,0) ~ ')';
+            }
+        }
+        $made.make: $top;
+    }
+}
+
 </pre></section>		</div>
-</div><footer><div>Rendered from <span class="path">UNNAMED</span></div><div>at <span class="time">2023-12-06T09:07:02Z</span></div></footer>
+</div><footer><div>Rendered from <span class="path">UNNAMED</span></div><div>at <span class="time">2023-12-06T09:26:34Z</span></div></footer>
 	</body>
 </html>
 

@@ -100,3 +100,34 @@ class VariablesActions does VariablesBaseActions is export {
 .RE
 .P
 Top of Document [#table-of-contents]
+Top of Document [#table-of-contents]
+.SS highlight\-var
+
+.RS 4m
+.EX
+sub highlight\-var($var \-\-> Str:D) is export {
+    my $actions = VariablesActions;
+    my $tmp = Variables\&.parse($var, :enc('UTF\-8'), :$actions)\&.made;;
+    HighlighterFailed\&.new(:msg("Error: Variables\&.parse Failed\&."))\&.throw if $tmp === Any;
+    return $tmp;
+} # sub highlight\-var($var \-\-> Str:D) is export #
+
+
+.EE
+.RE
+.SS highlight\-val
+
+.RS 4m
+.EX
+sub highlight\-val($val \-\-> Str:D) is export {
+    my $actions = ValueActions;
+    my $tmp = Value\&.parse($val, :enc('UTF\-8'), :$actions)\&.made;;
+    HighlighterFailed\&.new(:msg("Error: Variables\&.parse Failed\&."))\&.throw if $tmp === Any;
+    return $tmp;
+} # sub highlight\-val($val \-\-> Str:D) is export #
+
+
+.EE
+.RE
+.P
+Top of Document [#table-of-contents]

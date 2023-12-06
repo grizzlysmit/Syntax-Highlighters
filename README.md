@@ -123,3 +123,31 @@ class VariablesActions does VariablesBaseActions is export {
 
 [Top of Document](#table-of-contents)
 
+[Top of Document](#table-of-contents)
+
+highlight-var
+-------------
+
+```raku
+sub highlight-var($var --> Str:D) is export {
+    my $actions = VariablesActions;
+    my $tmp = Variables.parse($var, :enc('UTF-8'), :$actions).made;;
+    HighlighterFailed.new(:msg("Error: Variables.parse Failed.")).throw if $tmp === Any;
+    return $tmp;
+} # sub highlight-var($var --> Str:D) is export #
+```
+
+highlight-val
+-------------
+
+```raku
+sub highlight-val($val --> Str:D) is export {
+    my $actions = ValueActions;
+    my $tmp = Value.parse($val, :enc('UTF-8'), :$actions).made;;
+    HighlighterFailed.new(:msg("Error: Variables.parse Failed.")).throw if $tmp === Any;
+    return $tmp;
+} # sub highlight-val($val --> Str:D) is export #
+```
+
+[Top of Document](#table-of-contents)
+

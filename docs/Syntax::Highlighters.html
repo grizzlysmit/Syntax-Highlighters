@@ -585,6 +585,8 @@ footer {
  <tr class="toc-level-2"><td class="toc-text"><a href="#VariablesBase">VariablesBase</a></td></tr>
  <tr class="toc-level-2"><td class="toc-text"><a href="#VariablesBaseActions">VariablesBaseActions</a></td></tr>
  <tr class="toc-level-2"><td class="toc-text"><a href="#Variables_and_VariablesActions">Variables and VariablesActions</a></td></tr>
+ <tr class="toc-level-2"><td class="toc-text"><a href="#highlight-var">highlight-var</a></td></tr>
+ <tr class="toc-level-2"><td class="toc-text"><a href="#highlight-val">highlight-val</a></td></tr>
 </table></div>
 </nav><div id="Gzz::Text::Utils"></div><div class="subtitle"><p>A Raku module to one basic syntax highlighting.</p></div><div class="pod-body"><section name="___top"><h2 id="Table_of_Contents"><a href="#___top" class="u" title="go to top of document">Table of Contents</a></h2>
 <ul>
@@ -648,8 +650,24 @@ class VariablesActions does VariablesBaseActions is export {
     }
 }
 
+</pre><p><a href="#table-of-contents">Top of Document</a></p></section><section name="pod"><p><a href="#table-of-contents">Top of Document</a></p><h2 id="highlight-var"><a href="#Gzz::Text::Utils" class="u" title="go to top of document">highlight-var</a></h2>
+<pre class="pod-block-code">sub highlight-var($var --&gt; Str:D) is export {
+    my $actions = VariablesActions;
+    my $tmp = Variables.parse($var, :enc('UTF-8'), :$actions).made;;
+    HighlighterFailed.new(:msg(&quot;Error: Variables.parse Failed.&quot;)).throw if $tmp === Any;
+    return $tmp;
+} # sub highlight-var($var --&gt; Str:D) is export #
+
+</pre></section><section name="pod"><h2 id="highlight-val"><a href="#Gzz::Text::Utils" class="u" title="go to top of document">highlight-val</a></h2>
+<pre class="pod-block-code">sub highlight-val($val --&gt; Str:D) is export {
+    my $actions = ValueActions;
+    my $tmp = Value.parse($val, :enc('UTF-8'), :$actions).made;;
+    HighlighterFailed.new(:msg(&quot;Error: Variables.parse Failed.&quot;)).throw if $tmp === Any;
+    return $tmp;
+} # sub highlight-val($val --&gt; Str:D) is export #
+
 </pre><p><a href="#table-of-contents">Top of Document</a></p></section>		</div>
-</div><footer><div>Rendered from <span class="path">UNNAMED</span></div><div>at <span class="time">2023-12-06T09:37:19Z</span></div></footer>
+</div><footer><div>Rendered from <span class="path">UNNAMED</span></div><div>at <span class="time">2023-12-06T10:03:09Z</span></div></footer>
 	</body>
 </html>
 

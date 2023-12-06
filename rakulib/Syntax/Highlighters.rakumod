@@ -572,16 +572,54 @@ class ValueActions does ValueBaseActions is export {
     }
 } # class ValueActions does ValueBaseActions #
 
-sub highlight-var(Str:D $var --> Str:D) is export {
+=begin pod
+
+L<Top of Document|#table-of-contents>
+
+=head2 highlight-var
+
+=begin code :lang<raku>
+
+sub highlight-var($var --> Str:D) is export {
     my $actions = VariablesActions;
     my $tmp = Variables.parse($var, :enc('UTF-8'), :$actions).made;;
     HighlighterFailed.new(:msg("Error: Variables.parse Failed.")).throw if $tmp === Any;
     return $tmp;
-} # sub highlight-var(Str:D --> Str:D) is export #
+} # sub highlight-var($var --> Str:D) is export #
 
-sub highlight-val(Str:D $val --> Str:D) is export {
+=end code
+
+=end pod
+
+sub highlight-var($var --> Str:D) is export {
+    my $actions = VariablesActions;
+    my $tmp = Variables.parse($var, :enc('UTF-8'), :$actions).made;;
+    HighlighterFailed.new(:msg("Error: Variables.parse Failed.")).throw if $tmp === Any;
+    return $tmp;
+} # sub highlight-var($var --> Str:D) is export #
+
+=begin pod
+
+=head2 highlight-val
+
+=begin code :lang<raku>
+
+sub highlight-val($val --> Str:D) is export {
     my $actions = ValueActions;
     my $tmp = Value.parse($val, :enc('UTF-8'), :$actions).made;;
     HighlighterFailed.new(:msg("Error: Variables.parse Failed.")).throw if $tmp === Any;
     return $tmp;
-} # sub highlight-val(Str:D --> Str:D) is export #
+} # sub highlight-val($val --> Str:D) is export #
+
+=end code
+
+L<Top of Document|#table-of-contents>
+
+=end pod
+
+sub highlight-val($val --> Str:D) is export {
+    my $actions = ValueActions;
+    my $tmp = Value.parse($val, :enc('UTF-8'), :$actions).made;;
+    HighlighterFailed.new(:msg("Error: Variables.parse Failed.")).throw if $tmp === Any;
+    return $tmp;
+} # sub highlight-val($val --> Str:D) is export #

@@ -23,9 +23,10 @@ Table of  Contents
 
 =end head2
 
-=item2 L<Introduction|#introduction>
-=item2 L<highlight-var|#highlight-var>
-=item2 L<highlight-val|#highlight-val>
+=item1 L<Introduction|#introduction>
+=item1 L<HighlighterFailed|#highlighterfailed>
+=item1 L<highlight-var|#highlight-var>
+=item1 L<highlight-val|#highlight-val>
 
 =NAME Syntax::Highlighters 
 =AUTHOR Francis Grizzly Smit (grizzly@smit.id.au)

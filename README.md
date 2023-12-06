@@ -1,11 +1,13 @@
 Table of Contents
 -----------------
 
-    * [Introduction](#introduction)
+  * [Introduction](#introduction)
 
-    * [highlight-var](#highlight-var)
+  * [HighlighterFailed](#highlighterfailed)
 
-    * [highlight-val](#highlight-val)
+  * [highlight-var](#highlight-var)
+
+  * [highlight-val](#highlight-val)
 
 NAME
 ====

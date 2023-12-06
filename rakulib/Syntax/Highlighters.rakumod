@@ -28,6 +28,8 @@ Table of Contents
 =item1 L<VariablesBase|#variablesbase>
 =item1 L<VariablesBaseActions|#variablesbaseactions>
 =item1 L<Variables and VariablesActions|#variables-and-variablesactions>
+=item1 L<ValueBase and ValueBaseActions|#valuebase-and-valuebaseactions>
+=item1 L<Value and ValueActions|#value-and-valueactions>
 =item1 L<highlight-var|#highlight-var>
 =item1 L<highlight-val|#highlight-val>
 
@@ -333,6 +335,16 @@ class VariablesActions does VariablesBaseActions is export {
     }
 }
 
+=begin pod
+
+=head2 ValueBase and ValueBaseActions
+
+ValueBase and ValueBaseActions are a grammar role pair that implement parsing of B<Raku> style values.
+B<Note not comprehensive nor complete (yet at least)>. 
+
+
+=end pod
+
 
 grammar ValueBase {
     token value       { <space> [ <array-val> || <hash-val> || <scalar-val> ] <space-after=.space> }
@@ -513,6 +525,79 @@ role ValueBaseActions {
         make %value;
     }
 } # role ValueBaseActions does KeyActions #
+
+=begin pod
+
+=head2 Value and ValueActions
+
+Value and ValueActions are a grammar class pair that implements syntax highlighting of B<Raku> style values,
+using ValueBase and ValueBaseActions, as the parsing work horse.
+
+=begin code :lang<raku>
+
+grammar Value is ValueBase is export {
+    token TOP            { ^ <value> $ }
+}
+
+class ValueActions does ValueBaseActions is export {
+    method !highlight(%spec) {
+        my $highlight = '';
+        $highlight ~= %spec«space»«val» if %spec«space»;
+        if %spec«type» eq 'int' {
+            $highlight ~= t.color(255, 0, 255) ~ %spec«val»;
+        } elsif %spec«type» eq 'rat-val' {
+            $highlight ~= t.color(255, 0, 255) ~ %spec«numerator» ~ '/' ~ %spec«denominator»;
+        } elsif %spec«type» eq 'num' {
+            $highlight ~= t.color(255, 0, 255) ~ %spec«mantisa»;
+            $highlight ~= %spec«exponent»«signifitant» ~ %spec«exponent»«sign» ~ %spec«exponent»«exp» if %spec«exponent»;
+        } elsif %spec«type» eq 'bool' {
+            $highlight ~= t.color(255, 0, 255) ~ %spec«val»;
+        } elsif %spec«type» eq 'bare-word' {
+            $highlight ~= t.color(255, 0, 255) ~ %spec«val»;
+        } elsif %spec«type» eq 'string' {
+            $highlight ~= t.color(255, 0, 255) ~ %spec«open» ~ %spec«val» ~ %spec«close»;
+        } elsif %spec«type» eq 'array-val' {
+            $highlight ~= t.color(255, 0, 0) ~  '[';
+            $highlight ~= %spec«a-space»«val» if %spec«a-space»;
+            my Str:D $sep = '';
+            my @vals = |%spec«val»;
+            for @vals -> %val {
+                $highlight ~= t.color(255, 0, 0) ~ $sep ~ self!highlight(%val);
+                $sep = ',';
+            }
+            $highlight ~= %spec«a-space-after»«val» if %spec«a-space-after»;
+            $highlight ~= t.color(255, 0, 0) ~ ']';
+        } elsif %spec«type» eq 'hash-val' {
+            $highlight ~= t.color(255, 0, 0) ~  '{';
+            $highlight ~= %spec«h-space»«val» if %spec«h-space»;
+            my Str:D $sep = '';
+            my @vals = |%spec«val»;
+            for @vals -> %val {
+                $highlight ~= t.color(255, 0, 0) ~ $sep ~ self!highlight(%val);
+                $sep = ',';
+            }
+            $highlight ~= %spec«h-space-after»«val» if %spec«h-space-after»;
+            $highlight ~= t.color(255, 0, 0) ~ '}';
+        } elsif %spec«type» eq 'pair0' {
+            $highlight ~= t.color(255, 0, 255) ~ %spec«key» ~ t.color(255, 0, 0) ~ ' => ' ~ self!highlight(%spec«val»);
+        } elsif %spec«type» eq 'pair1' {
+            $highlight ~= t.color(255, 0, 0) ~ ':' ~ t.color(255, 0, 255)
+                                               ~ %spec«key» ~ t.color(255, 0, 0) ~ '(' ~ self!highlight(%spec«val»)
+                                                                                                ~ t.color(255, 0, 0) ~ ')';
+        }
+        $highlight ~= %spec«space-after»«val» if %spec«space-after»;
+        return $highlight;
+    }
+    method TOP($made) {
+        my %spec = $made<value>.made;
+        my Str $top = self!highlight(%spec);
+        $made.make: $top;
+    }
+} # class ValueActions does ValueBaseActions #
+
+=end code
+
+=end pod
 
 grammar Value is ValueBase is export {
     token TOP            { ^ <value> $ }

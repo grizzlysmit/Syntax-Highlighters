@@ -585,6 +585,8 @@ footer {
  <tr class="toc-level-2"><td class="toc-text"><a href="#VariablesBase">VariablesBase</a></td></tr>
  <tr class="toc-level-2"><td class="toc-text"><a href="#VariablesBaseActions">VariablesBaseActions</a></td></tr>
  <tr class="toc-level-2"><td class="toc-text"><a href="#Variables_and_VariablesActions">Variables and VariablesActions</a></td></tr>
+ <tr class="toc-level-2"><td class="toc-text"><a href="#ValueBase_and_ValueBaseActions">ValueBase and ValueBaseActions</a></td></tr>
+ <tr class="toc-level-2"><td class="toc-text"><a href="#Value_and_ValueActions">Value and ValueActions</a></td></tr>
  <tr class="toc-level-2"><td class="toc-text"><a href="#highlight-var">highlight-var</a></td></tr>
  <tr class="toc-level-2"><td class="toc-text"><a href="#highlight-val">highlight-val</a></td></tr>
 </table></div>
@@ -595,6 +597,8 @@ footer {
 <li><p><a href="#variablesbase">VariablesBase</a></p></li>
 <li><p><a href="#variablesbaseactions">VariablesBaseActions</a></p></li>
 <li><p><a href="#variables-and-variablesactions">Variables and VariablesActions</a></p></li>
+<li><p><a href="#valuebase-and-valuebaseactions">ValueBase and ValueBaseActions</a></p></li>
+<li><p><a href="#value-and-valueactions">Value and ValueActions</a></p></li>
 <li><p><a href="#highlight-var">highlight-var</a></p></li>
 <li><p><a href="#highlight-val">highlight-val</a></p></li>
 </ul>
@@ -650,7 +654,69 @@ class VariablesActions does VariablesBaseActions is export {
     }
 }
 
-</pre><p><a href="#table-of-contents">Top of Document</a></p></section><section name="pod"><p><a href="#table-of-contents">Top of Document</a></p><h2 id="highlight-var"><a href="#Syntax::Highlighters" class="u" title="go to top of document">highlight-var</a></h2>
+</pre><p><a href="#table-of-contents">Top of Document</a></p></section><section name="pod"><h2 id="ValueBase_and_ValueBaseActions"><a href="#Syntax::Highlighters" class="u" title="go to top of document">ValueBase and ValueBaseActions</a></h2>
+<p>ValueBase and ValueBaseActions are a grammar role pair that implement parsing of <strong>Raku</strong> style values. <strong>Note not comprehensive nor complete (yet at least)</strong>. </p></section><section name="pod"><h2 id="Value_and_ValueActions"><a href="#Syntax::Highlighters" class="u" title="go to top of document">Value and ValueActions</a></h2>
+<p>Value and ValueActions are a grammar class pair that implements syntax highlighting of <strong>Raku</strong> style values, using ValueBase and ValueBaseActions, as the parsing work horse.</p><pre class="pod-block-code">grammar Value is ValueBase is export {
+    token TOP            { ^ &lt;value&gt; $ }
+}
+
+class ValueActions does ValueBaseActions is export {
+    method !highlight(%spec) {
+        my $highlight = '';
+        $highlight ~= %spec«space»«val» if %spec«space»;
+        if %spec«type» eq 'int' {
+            $highlight ~= t.color(255, 0, 255) ~ %spec«val»;
+        } elsif %spec«type» eq 'rat-val' {
+            $highlight ~= t.color(255, 0, 255) ~ %spec«numerator» ~ '/' ~ %spec«denominator»;
+        } elsif %spec«type» eq 'num' {
+            $highlight ~= t.color(255, 0, 255) ~ %spec«mantisa»;
+            $highlight ~= %spec«exponent»«signifitant» ~ %spec«exponent»«sign» ~ %spec«exponent»«exp» if %spec«exponent»;
+        } elsif %spec«type» eq 'bool' {
+            $highlight ~= t.color(255, 0, 255) ~ %spec«val»;
+        } elsif %spec«type» eq 'bare-word' {
+            $highlight ~= t.color(255, 0, 255) ~ %spec«val»;
+        } elsif %spec«type» eq 'string' {
+            $highlight ~= t.color(255, 0, 255) ~ %spec«open» ~ %spec«val» ~ %spec«close»;
+        } elsif %spec«type» eq 'array-val' {
+            $highlight ~= t.color(255, 0, 0) ~  '[';
+            $highlight ~= %spec«a-space»«val» if %spec«a-space»;
+            my Str:D $sep = '';
+            my @vals = |%spec«val»;
+            for @vals -&gt; %val {
+                $highlight ~= t.color(255, 0, 0) ~ $sep ~ self!highlight(%val);
+                $sep = ',';
+            }
+            $highlight ~= %spec«a-space-after»«val» if %spec«a-space-after»;
+            $highlight ~= t.color(255, 0, 0) ~ ']';
+        } elsif %spec«type» eq 'hash-val' {
+            $highlight ~= t.color(255, 0, 0) ~  '{';
+            $highlight ~= %spec«h-space»«val» if %spec«h-space»;
+            my Str:D $sep = '';
+            my @vals = |%spec«val»;
+            for @vals -&gt; %val {
+                $highlight ~= t.color(255, 0, 0) ~ $sep ~ self!highlight(%val);
+                $sep = ',';
+            }
+            $highlight ~= %spec«h-space-after»«val» if %spec«h-space-after»;
+            $highlight ~= t.color(255, 0, 0) ~ '}';
+        } elsif %spec«type» eq 'pair0' {
+            $highlight ~= t.color(255, 0, 255) ~ %spec«key» ~ t.color(255, 0, 0) ~ ' =&gt; ' ~ self!highlight(%spec«val»);
+        } elsif %spec«type» eq 'pair1' {
+            $highlight ~= t.color(255, 0, 0) ~ ':' ~ t.color(255, 0, 255)
+                                               ~ %spec«key» ~ t.color(255, 0, 0) ~ '(' ~ self!highlight(%spec«val»)
+                                                                                                ~ t.color(255, 0, 0) ~ ')';
+        }
+        $highlight ~= %spec«space-after»«val» if %spec«space-after»;
+        return $highlight;
+    }
+    method TOP($made) {
+        my %spec = $made&lt;value&gt;.made;
+        my Str $top = self!highlight(%spec);
+        $made.make: $top;
+    }
+} # class ValueActions does ValueBaseActions #
+
+</pre></section><section name="pod"><p><a href="#table-of-contents">Top of Document</a></p><h2 id="highlight-var"><a href="#Syntax::Highlighters" class="u" title="go to top of document">highlight-var</a></h2>
 <pre class="pod-block-code">sub highlight-var($var --&gt; Str:D) is export {
     my $actions = VariablesActions;
     my $tmp = Variables.parse($var, :enc('UTF-8'), :$actions).made;;
@@ -667,7 +733,7 @@ class VariablesActions does VariablesBaseActions is export {
 } # sub highlight-val($val --&gt; Str:D) is export #
 
 </pre><p><a href="#table-of-contents">Top of Document</a></p></section>		</div>
-</div><footer><div>Rendered from <span class="path">UNNAMED</span></div><div>at <span class="time">2023-12-06T10:08:27Z</span></div></footer>
+</div><footer><div>Rendered from <span class="path">UNNAMED</span></div><div>at <span class="time">2023-12-06T17:23:45Z</span></div></footer>
 	</body>
 </html>
 

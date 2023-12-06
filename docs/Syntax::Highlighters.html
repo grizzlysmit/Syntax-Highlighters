@@ -580,11 +580,13 @@ footer {
 <tr class="toc-level-2"><td class="toc-text"><a href="#Table_of_Contents">Table of Contents</a></td></tr>
  <tr class="toc-level-1"><td class="toc-text"><a href="#Name">Name</a></td></tr>
  <tr class="toc-level-1"><td class="toc-text"><a href="#Copyright">Copyright</a></td></tr>
- <tr class="toc-level-1"><td class="toc-text"><a href="#some_syntax_highlighting_stuff_">some syntax highlighting stuff </a></td></tr>
+ <tr class="toc-level-1"><td class="toc-text"><a href="#Introduction">Introduction</a></td></tr>
+ <tr class="toc-level-1"><td class="toc-text"><a href="#HighlighterFailed">HighlighterFailed</a></td></tr>
 </table></div>
-</nav><div id="Gzz::Text::Utils"></div><div class="subtitle"><p>A Raku module to provide text formatting services to Raku programs.</p></div><div class="pod-body"><section name="___top"><h2 id="Table_of_Contents"><a href="#___top" class="u" title="go to top of document">Table of Contents</a></h2>
+</nav><div id="Gzz::Text::Utils"></div><div class="subtitle"><p>A Raku module to one basic syntax highlighting.</p></div><div class="pod-body"><section name="___top"><h2 id="Table_of_Contents"><a href="#___top" class="u" title="go to top of document">Table of Contents</a></h2>
 <ul>
 <ul>
+<li><p><a href="#introduction">Introduction</a></p></li>
 <li><p><a href="#highlight-var">highlight-var</a></p></li>
 <li><p><a href="#highlight-val">highlight-val</a></p></li>
 </ul>
@@ -595,11 +597,19 @@ footer {
 </section>
 <section>
 <h1 id="Copyright"><a href="#Gzz::Text::Utils" class="u" title="go to top of document">COPYRIGHT</a></h1>
-<p>LGPL V3.0+ <a href="https://github.com/grizzlysmit/Gzz-Text-Utils/blob/main/LICENSE">LICENSE</a></p>
+<p>LGPL V3.0+ <a href="https://github.com/grizzlysmit/Syntax-Highlighters/blob/main/LICENSE">LICENSE</a></p>
 </section>
-<h1 id="some_syntax_highlighting_stuff_"><a href="#Gzz::Text::Utils" class="u" title="go to top of document">some syntax highlighting stuff </a></h1>
-</section>		</div>
-</div><footer><div>Rendered from <span class="path">UNNAMED</span></div><div>at <span class="time">2023-12-06T08:39:12Z</span></div></footer>
+<h1 id="Introduction"><a href="#Gzz::Text::Utils" class="u" title="go to top of document">Introduction</a></h1>
+<p>Some syntax highlighting stuff: grammars to parse basic <strong>Raku</strong> forms and highlight them with colours. And functions to use them.</p></section><section name="pod"><h1 id="HighlighterFailed"><a href="#Gzz::Text::Utils" class="u" title="go to top of document">HighlighterFailed</a></h1>
+<p>An Exception class for reporting errors in parsing.</p><pre class="pod-block-code">class HighlighterFailed is Exception is export {
+    has Str:D $.msg = 'Error: Highlighter Failed.';
+    method message( --&gt; Str:D) {
+        $!msg;
+    }
+}
+
+</pre></section>		</div>
+</div><footer><div>Rendered from <span class="path">UNNAMED</span></div><div>at <span class="time">2023-12-06T09:05:21Z</span></div></footer>
 	</body>
 </html>
 

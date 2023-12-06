@@ -23,6 +23,7 @@ Table of  Contents
 
 =end head2
 
+=item2 L<Introduction|#introduction>
 =item2 L<highlight-var|#highlight-var>
 =item2 L<highlight-val|#highlight-val>
 
@@ -30,16 +31,18 @@ Table of  Contents
 =AUTHOR Francis Grizzly Smit (grizzly@smit.id.au)
 =VERSION 0.1.0
 =TITLE Gzz::Text::Utils
-=SUBTITLE A Raku module to provide text formatting services to Raku programs.
+=SUBTITLE A Raku module to one basic syntax highlighting.
 
 =COPYRIGHT
-LGPL V3.0+ L<LICENSE|https://github.com/grizzlysmit/Gzz-Text-Utils/blob/main/LICENSE>
+LGPL V3.0+ L<LICENSE|https://github.com/grizzlysmit/Syntax-Highlighters/blob/main/LICENSE>
 
-=begin head1
 
-some syntax highlighting stuff 
+=head1 Introduction
 
-=end head1
+Some syntax highlighting stuff: 
+grammars to parse basic B<Raku> forms and highlight them with colours.
+And functions to use them.
+
 
 =end pod
  
@@ -55,6 +58,25 @@ some syntax highlighting stuff
     #**********************************************#
     ################################################
 #»»»
+
+=begin pod
+
+=head1 HighlighterFailed
+
+An Exception class for reporting errors in parsing.
+
+=begin code :lang<raku>
+
+class HighlighterFailed is Exception is export {
+    has Str:D $.msg = 'Error: Highlighter Failed.';
+    method message( --> Str:D) {
+        $!msg;
+    }
+}
+
+=end code
+
+=end pod
 
 class HighlighterFailed is Exception is export {
     has Str:D $.msg = 'Error: Highlighter Failed.';

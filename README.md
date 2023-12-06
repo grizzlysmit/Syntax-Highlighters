@@ -89,7 +89,7 @@ A role to assist in the parsing variable forms forms the basis of **VariablesAct
 Variables and VariablesActions
 ------------------------------
 
-The grammar and class pair that do the actual syntax highlighting of the variable forms.
+The grammar and class pair that do the actual syntax highlighting of the variable forms. **NB: Uses VariablesBase and VariablesBaseActions to do the actual parsing**.
 
 ```raku
 grammar Variables is VariablesBase is export {

@@ -262,6 +262,7 @@ L<Top of Document|#table-of-contents>
 =head2 Variables and VariablesActions
 
 The grammar and class pair that do the actual syntax highlighting of the variable forms.
+B<NB: Uses VariablesBase and VariablesBaseActions to do the actual parsing>.
 
 =begin code :lang<raku>
 

@@ -622,7 +622,7 @@ footer {
 </pre></section><section name="pod"><h2 id="VariablesBase"><a href="#Syntax::Highlighters" class="u" title="go to top of document">VariablesBase</a></h2>
 <p>A grammar for parsing variable forms forms the basis of <strong>Variables</strong> which syntax highlights variable forms.</p></section><section name="pod"><p><a href="#table-of-contents">Top of Document</a></p><h2 id="VariablesBaseActions"><a href="#Syntax::Highlighters" class="u" title="go to top of document">VariablesBaseActions</a></h2>
 <p>A role to assist in the parsing variable forms forms the basis of <strong>VariablesActions</strong> which syntax highlights variable forms.</p></section><section name="pod"><p><a href="#table-of-contents">Top of Document</a></p><h2 id="Variables_and_VariablesActions"><a href="#Syntax::Highlighters" class="u" title="go to top of document">Variables and VariablesActions</a></h2>
-<p>The grammar and class pair that do the actual syntax highlighting of the variable forms.</p><pre class="pod-block-code">grammar Variables is VariablesBase is export {
+<p>The grammar and class pair that do the actual syntax highlighting of the variable forms. <strong>NB: Uses VariablesBase and VariablesBaseActions to do the actual parsing</strong>.</p><pre class="pod-block-code">grammar Variables is VariablesBase is export {
     token TOP { &lt;var&gt; }
 }
 
@@ -733,7 +733,7 @@ class ValueActions does ValueBaseActions is export {
 } # sub highlight-val($val --&gt; Str:D) is export #
 
 </pre><p><a href="#table-of-contents">Top of Document</a></p></section>		</div>
-</div><footer><div>Rendered from <span class="path">UNNAMED</span></div><div>at <span class="time">2023-12-06T17:24:16Z</span></div></footer>
+</div><footer><div>Rendered from <span class="path">UNNAMED</span></div><div>at <span class="time">2023-12-06T17:32:36Z</span></div></footer>
 	</body>
 </html>
 

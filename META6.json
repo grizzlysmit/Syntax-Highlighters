@@ -1,6 +1,6 @@
 {
     "name" : "Syntax::Highlighters",
-    "description" : "A Raku module to one basic syntax highlighting.\nSome syntax highlighting stuff:\ngrammars to parse basic Raku forms and highlight them with colours.\nAnd functions to use them.",
+    "description" : "A Raku module to do basic syntax highlighting.\nSome syntax highlighting stuff:\ngrammars to parse basic Raku forms and highlight them with colours.\nAnd functions to use them.",
     "perl" : "6.d",
     "license" : "LGPL-v3.0",
     "authors" : [

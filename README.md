@@ -1,6 +1,18 @@
 Table of Contents
 -----------------
 
+  * [NAME](#name)
+
+  * [AUTHOR](#author)
+
+  * [VERSION](#version)
+
+  * [TITLE](#title)
+
+  * [SUBTITLE](#subtitle)
+
+  * [COPYRIGHT](#copyright)
+
   * [Introduction](#introduction)
 
   * [HighlighterFailed](#highlighterfailed)
@@ -42,7 +54,7 @@ Syntax::Highlighters
 SUBTITLE
 ========
 
-A Raku module to one basic syntax highlighting.
+A Raku module to do basic syntax highlighting.
 
 COPYRIGHT
 =========

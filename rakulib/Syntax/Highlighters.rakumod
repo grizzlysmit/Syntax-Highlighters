@@ -23,6 +23,12 @@ Table of Contents
 
 =end head2
 
+=item1 L<NAME|#name>
+=item1 L<AUTHOR|#author>
+=item1 L<VERSION|#version>
+=item1 L<TITLE|#title>
+=item1 L<SUBTITLE|#subtitle>
+=item1 L<COPYRIGHT|#copyright>
 =item1 L<Introduction|#introduction>
 =item1 L<HighlighterFailed|#highlighterfailed>
 =item1 L<VariablesBase|#variablesbase>
@@ -37,7 +43,7 @@ Table of Contents
 =AUTHOR Francis Grizzly Smit (grizzly@smit.id.au)
 =VERSION 0.1.0
 =TITLE Syntax::Highlighters
-=SUBTITLE A Raku module to one basic syntax highlighting.
+=SUBTITLE A Raku module to do basic syntax highlighting.
 
 =COPYRIGHT
 LGPL V3.0+ L<LICENSE|https://github.com/grizzlysmit/Syntax-Highlighters/blob/main/LICENSE>

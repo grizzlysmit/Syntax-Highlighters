@@ -50,6 +50,8 @@ Introduction
 
 Some syntax highlighting stuff: grammars to parse basic **Raku** forms and highlight them with colours. And functions to use them.
 
+[Table of Contents](#table-of-contents)
+
 HighlighterFailed
 =================
 

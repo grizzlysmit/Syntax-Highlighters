@@ -19,7 +19,7 @@ use Terminal::ANSI::OO :t;
 
 =begin head2
 
-Table of  Contents
+Table of Contents
 
 =end head2
 
@@ -64,6 +64,8 @@ And functions to use them.
 #»»»
 
 =begin pod
+
+L<Table of Contents|#table-of-contents>
 
 =head1 HighlighterFailed
 

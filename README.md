@@ -50,7 +50,7 @@ Introduction
 
 Some syntax highlighting stuff: grammars to parse basic **Raku** forms and highlight them with colours. And functions to use them.
 
-[Table of Contents](#table-of-contents)
+[Top of Document](#table-of-contents)
 
 HighlighterFailed
 =================
@@ -71,10 +71,14 @@ VariablesBase
 
 A grammar for parsing variable forms forms the basis of **Variables** which syntax highlights variable forms.
 
+[Top of Document](#table-of-contents)
+
 VariablesBaseActions
 --------------------
 
 A role to assist in the parsing variable forms forms the basis of **VariablesActions** which syntax highlights variable forms.
+
+[Top of Document](#table-of-contents)
 
 Variables and VariablesActions
 ------------------------------
@@ -114,4 +118,6 @@ class VariablesActions does VariablesBaseActions is export {
     }
 }
 ```
+
+[Top of Document](#table-of-contents)
 

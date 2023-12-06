@@ -605,7 +605,7 @@ footer {
 <p>LGPL V3.0+ <a href="https://github.com/grizzlysmit/Syntax-Highlighters/blob/main/LICENSE">LICENSE</a></p>
 </section>
 <h1 id="Introduction"><a href="#Gzz::Text::Utils" class="u" title="go to top of document">Introduction</a></h1>
-<p>Some syntax highlighting stuff: grammars to parse basic <strong>Raku</strong> forms and highlight them with colours. And functions to use them.</p></section><section name="pod"><p><a href="#table-of-contents">Table of Contents</a></p><h1 id="HighlighterFailed"><a href="#Gzz::Text::Utils" class="u" title="go to top of document">HighlighterFailed</a></h1>
+<p>Some syntax highlighting stuff: grammars to parse basic <strong>Raku</strong> forms and highlight them with colours. And functions to use them.</p></section><section name="pod"><p><a href="#table-of-contents">Top of Document</a></p><h1 id="HighlighterFailed"><a href="#Gzz::Text::Utils" class="u" title="go to top of document">HighlighterFailed</a></h1>
 <p>An Exception class for reporting errors in parsing.</p><pre class="pod-block-code">class HighlighterFailed is Exception is export {
     has Str:D $.msg = 'Error: Highlighter Failed.';
     method message( --&gt; Str:D) {
@@ -614,8 +614,8 @@ footer {
 }
 
 </pre></section><section name="pod"><h2 id="VariablesBase"><a href="#Gzz::Text::Utils" class="u" title="go to top of document">VariablesBase</a></h2>
-<p>A grammar for parsing variable forms forms the basis of <strong>Variables</strong> which syntax highlights variable forms.</p></section><section name="pod"><h2 id="VariablesBaseActions"><a href="#Gzz::Text::Utils" class="u" title="go to top of document">VariablesBaseActions</a></h2>
-<p>A role to assist in the parsing variable forms forms the basis of <strong>VariablesActions</strong> which syntax highlights variable forms.</p></section><section name="pod"><h2 id="Variables_and_VariablesActions"><a href="#Gzz::Text::Utils" class="u" title="go to top of document">Variables and VariablesActions</a></h2>
+<p>A grammar for parsing variable forms forms the basis of <strong>Variables</strong> which syntax highlights variable forms.</p></section><section name="pod"><p><a href="#table-of-contents">Top of Document</a></p><h2 id="VariablesBaseActions"><a href="#Gzz::Text::Utils" class="u" title="go to top of document">VariablesBaseActions</a></h2>
+<p>A role to assist in the parsing variable forms forms the basis of <strong>VariablesActions</strong> which syntax highlights variable forms.</p></section><section name="pod"><p><a href="#table-of-contents">Top of Document</a></p><h2 id="Variables_and_VariablesActions"><a href="#Gzz::Text::Utils" class="u" title="go to top of document">Variables and VariablesActions</a></h2>
 <p>The grammar and class pair that do the actual syntax highlighting of the variable forms.</p><pre class="pod-block-code">grammar Variables is VariablesBase is export {
     token TOP { &lt;var&gt; }
 }
@@ -648,8 +648,8 @@ class VariablesActions does VariablesBaseActions is export {
     }
 }
 
-</pre></section>		</div>
-</div><footer><div>Rendered from <span class="path">UNNAMED</span></div><div>at <span class="time">2023-12-06T09:32:33Z</span></div></footer>
+</pre><p><a href="#table-of-contents">Top of Document</a></p></section>		</div>
+</div><footer><div>Rendered from <span class="path">UNNAMED</span></div><div>at <span class="time">2023-12-06T09:35:17Z</span></div></footer>
 	</body>
 </html>
 

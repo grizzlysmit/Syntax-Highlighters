@@ -65,7 +65,7 @@ And functions to use them.
 
 =begin pod
 
-L<Table of Contents|#table-of-contents>
+L<Top of Document|#table-of-contents>
 
 =head1 HighlighterFailed
 
@@ -118,6 +118,8 @@ grammar VariablesBase {
 }
 
 =begin pod
+
+L<Top of Document|#table-of-contents>
 
 =head2 VariablesBaseActions
 
@@ -251,6 +253,8 @@ role VariablesBaseActions {
 
 =begin pod
 
+L<Top of Document|#table-of-contents>
+
 =head2 Variables and VariablesActions
 
 The grammar and class pair that do the actual syntax highlighting of the variable forms.
@@ -290,6 +294,8 @@ class VariablesActions does VariablesBaseActions is export {
 }
 
 =end code
+
+L<Top of Document|#table-of-contents>
 
 =end pod
 

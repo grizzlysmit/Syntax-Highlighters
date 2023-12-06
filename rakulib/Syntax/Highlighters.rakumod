@@ -57,7 +57,7 @@ Some syntax highlighting stuff:
 grammars to parse basic B<Raku> forms and highlight them with colours.
 And functions to use them.
 
-B<NB: by no means complete or exhaustive (as yet at least) and no way to parse expressions etc.>.
+B<NB: by no means complete or exhaustive (as yet at least), and no way to parse expressions etc>.
 
 
 =end pod

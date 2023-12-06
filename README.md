@@ -89,7 +89,9 @@ A role to assist in the parsing variable forms forms the basis of **VariablesAct
 Variables and VariablesActions
 ------------------------------
 
-The grammar and class pair that do the actual syntax highlighting of the variable forms. **NB: Uses VariablesBase and VariablesBaseActions to do the actual parsing**.
+The grammar and class pair that do the actual syntax highlighting of the variable forms.
+
+**NB: Uses VariablesBase and VariablesBaseActions to do the actual parsing**.
 
 ```raku
 grammar Variables is VariablesBase is export {
@@ -130,7 +132,9 @@ class VariablesActions does VariablesBaseActions is export {
 ValueBase and ValueBaseActions
 ------------------------------
 
-ValueBase and ValueBaseActions are a grammar role pair that implement parsing of **Raku** style values. **Note not comprehensive nor complete (yet at least)**. 
+ValueBase and ValueBaseActions are a grammar role pair that implement parsing of **Raku** style values.
+
+**NB: not comprehensive nor complete (yet at least)**. 
 
 Value and ValueActions
 ----------------------
@@ -203,6 +207,10 @@ class ValueActions does ValueBaseActions is export {
 
 highlight-var
 -------------
+
+wraps up the actual usage of the grammars above.
+
+Defined as:
 
 ```raku
 sub highlight-var($var --> Str:D) is export {

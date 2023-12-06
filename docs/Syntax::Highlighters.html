@@ -622,7 +622,7 @@ footer {
 </pre></section><section name="pod"><h2 id="VariablesBase"><a href="#Syntax::Highlighters" class="u" title="go to top of document">VariablesBase</a></h2>
 <p>A grammar for parsing variable forms forms the basis of <strong>Variables</strong> which syntax highlights variable forms.</p></section><section name="pod"><p><a href="#table-of-contents">Top of Document</a></p><h2 id="VariablesBaseActions"><a href="#Syntax::Highlighters" class="u" title="go to top of document">VariablesBaseActions</a></h2>
 <p>A role to assist in the parsing variable forms forms the basis of <strong>VariablesActions</strong> which syntax highlights variable forms.</p></section><section name="pod"><p><a href="#table-of-contents">Top of Document</a></p><h2 id="Variables_and_VariablesActions"><a href="#Syntax::Highlighters" class="u" title="go to top of document">Variables and VariablesActions</a></h2>
-<p>The grammar and class pair that do the actual syntax highlighting of the variable forms. <strong>NB: Uses VariablesBase and VariablesBaseActions to do the actual parsing</strong>.</p><pre class="pod-block-code">grammar Variables is VariablesBase is export {
+<p>The grammar and class pair that do the actual syntax highlighting of the variable forms.</p><p><strong>NB: Uses VariablesBase and VariablesBaseActions to do the actual parsing</strong>.</p><pre class="pod-block-code">grammar Variables is VariablesBase is export {
     token TOP { &lt;var&gt; }
 }
 
@@ -655,7 +655,7 @@ class VariablesActions does VariablesBaseActions is export {
 }
 
 </pre><p><a href="#table-of-contents">Top of Document</a></p></section><section name="pod"><h2 id="ValueBase_and_ValueBaseActions"><a href="#Syntax::Highlighters" class="u" title="go to top of document">ValueBase and ValueBaseActions</a></h2>
-<p>ValueBase and ValueBaseActions are a grammar role pair that implement parsing of <strong>Raku</strong> style values. <strong>Note not comprehensive nor complete (yet at least)</strong>. </p></section><section name="pod"><h2 id="Value_and_ValueActions"><a href="#Syntax::Highlighters" class="u" title="go to top of document">Value and ValueActions</a></h2>
+<p>ValueBase and ValueBaseActions are a grammar role pair that implement parsing of <strong>Raku</strong> style values.</p><p><strong>NB: not comprehensive nor complete (yet at least)</strong>. </p></section><section name="pod"><h2 id="Value_and_ValueActions"><a href="#Syntax::Highlighters" class="u" title="go to top of document">Value and ValueActions</a></h2>
 <p>Value and ValueActions are a grammar class pair that implements syntax highlighting of <strong>Raku</strong> style values, using ValueBase and ValueBaseActions, as the parsing work horse.</p><pre class="pod-block-code">grammar Value is ValueBase is export {
     token TOP            { ^ &lt;value&gt; $ }
 }
@@ -717,7 +717,7 @@ class ValueActions does ValueBaseActions is export {
 } # class ValueActions does ValueBaseActions #
 
 </pre></section><section name="pod"><p><a href="#table-of-contents">Top of Document</a></p><h2 id="highlight-var"><a href="#Syntax::Highlighters" class="u" title="go to top of document">highlight-var</a></h2>
-<pre class="pod-block-code">sub highlight-var($var --&gt; Str:D) is export {
+<p>wraps up the actual usage of the grammars above.</p><p>Defined as:</p><pre class="pod-block-code">sub highlight-var($var --&gt; Str:D) is export {
     my $actions = VariablesActions;
     my $tmp = Variables.parse($var, :enc('UTF-8'), :$actions).made;;
     HighlighterFailed.new(:msg(&quot;Error: Variables.parse Failed.&quot;)).throw if $tmp === Any;
@@ -733,7 +733,7 @@ class ValueActions does ValueBaseActions is export {
 } # sub highlight-val($val --&gt; Str:D) is export #
 
 </pre><p><a href="#table-of-contents">Top of Document</a></p></section>		</div>
-</div><footer><div>Rendered from <span class="path">UNNAMED</span></div><div>at <span class="time">2023-12-06T17:32:36Z</span></div></footer>
+</div><footer><div>Rendered from <span class="path">UNNAMED</span></div><div>at <span class="time">2023-12-06T17:39:16Z</span></div></footer>
 	</body>
 </html>
 

@@ -63,7 +63,9 @@ A role to assist in the parsing variable forms forms the basis of \fBVariablesAc
 Top of Document [#table-of-contents]
 .SS Variables and VariablesActions
 
-The grammar and class pair that do the actual syntax highlighting of the variable forms\&. \fBNB: Uses VariablesBase and VariablesBaseActions to do the actual parsing\fR\&.
+The grammar and class pair that do the actual syntax highlighting of the variable forms\&.
+
+\fBNB: Uses VariablesBase and VariablesBaseActions to do the actual parsing\fR\&.
 
 .RS 4m
 .EX
@@ -106,7 +108,9 @@ class VariablesActions does VariablesBaseActions is export {
 Top of Document [#table-of-contents]
 .SS ValueBase and ValueBaseActions
 
-ValueBase and ValueBaseActions are a grammar role pair that implement parsing of \fBRaku\fR style values\&. \fBNote not comprehensive nor complete (yet at least)\fR\&. 
+ValueBase and ValueBaseActions are a grammar role pair that implement parsing of \fBRaku\fR style values\&.
+
+\fBNB: not comprehensive nor complete (yet at least)\fR\&. 
 .SS Value and ValueActions
 
 Value and ValueActions are a grammar class pair that implements syntax highlighting of \fBRaku\fR style values, using ValueBase and ValueBaseActions, as the parsing work horse\&.
@@ -178,6 +182,10 @@ class ValueActions does ValueBaseActions is export {
 .RE
 Top of Document [#table-of-contents]
 .SS highlight\-var
+
+wraps up the actual usage of the grammars above\&.
+
+Defined as:
 
 .RS 4m
 .EX

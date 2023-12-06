@@ -262,6 +262,7 @@ L<Top of Document|#table-of-contents>
 =head2 Variables and VariablesActions
 
 The grammar and class pair that do the actual syntax highlighting of the variable forms.
+
 B<NB: Uses VariablesBase and VariablesBaseActions to do the actual parsing>.
 
 =begin code :lang<raku>
@@ -341,7 +342,8 @@ class VariablesActions does VariablesBaseActions is export {
 =head2 ValueBase and ValueBaseActions
 
 ValueBase and ValueBaseActions are a grammar role pair that implement parsing of B<Raku> style values.
-B<Note not comprehensive nor complete (yet at least)>. 
+
+B<NB: not comprehensive nor complete (yet at least)>. 
 
 
 =end pod
@@ -663,6 +665,10 @@ class ValueActions does ValueBaseActions is export {
 L<Top of Document|#table-of-contents>
 
 =head2 highlight-var
+
+wraps up the actual usage of the grammars above.
+
+Defined as:
 
 =begin code :lang<raku>
 

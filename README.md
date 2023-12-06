@@ -68,6 +68,8 @@ Introduction
 
 Some syntax highlighting stuff: grammars to parse basic **Raku** forms and highlight them with colours. And functions to use them.
 
+**NB: by no means complete or exhaustive (as yet at least) and no way to parse expressions etc.**.
+
 [Top of Document](#table-of-contents)
 
 HighlighterFailed

@@ -17,6 +17,6 @@
         "source" : "git@github.com:grizzlysmit/Syntax-Highlighters.git"
     },
     "auth": "zef:grizzlysmit",
-    "version" : "0.1.1",
+    "version" : "0.1.2",
     "tags" : [ "text", "formatting", "syntax", "ANSI", "highlight", "colour", "color" ]
 }

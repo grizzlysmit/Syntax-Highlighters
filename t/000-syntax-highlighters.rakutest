@@ -1,0 +1,11 @@
+use v6;
+use lib 'lib';
+use Test;
+
+use Terminal::ANSI::OO :t;
+
+my Str:D $matched = t.color(255,0,0) ~ '$' ~ t.color(0,255,255) ~ '<' ~ 'name' ~ '>' ~ t.text-reset;
+
+is(highlight-var('$<name>') ~ t.text-reset, $matched);
+
+done-testing;

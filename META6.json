@@ -2,7 +2,7 @@
     "name" : "Syntax::Highlighters",
     "description" : "A Raku module to do basic syntax highlighting.\nSome syntax highlighting stuff:\ngrammars to parse basic Raku forms and highlight them with colours.\nAnd functions to use them.",
     "perl" : "6.d",
-    "license" : "LGPL-v3.0",
+    "license" : "LGPL-3.0-or-later",
     "authors" : [
         "Francis Grizzly Smit <grizzly@smit.id.au>"
     ],
@@ -19,6 +19,6 @@
         "bugtracker" : "https://github.com/grizzlysmit/Syntax-Highlighters/issues"
     },
     "auth": "zef:grizzlysmit",
-    "version" : "0.1.4",
+    "version" : "0.1.5",
     "tags" : [ "text", "formatting", "syntax", "ANSI", "highlight", "colour", "color" ]
 }

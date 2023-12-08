@@ -12,11 +12,13 @@
     "provides" : {
         "Syntax::Highlighters" : "rakulib/Syntax/Highlighters.rakumod"
     },
-    "source-url" : "git@github.com:grizzlysmit/Syntax-Highlighters.git",
+    "source-url" : "https://github.com/grizzlysmit/Syntax-Highlighters.git",
     "support" : {
-        "source" : "git@github.com:grizzlysmit/Syntax-Highlighters.git"
+        "source" : "https://github.com/grizzlysmit/Syntax-Highlighters.git",
+        "email" : "grizzly@smit.id.au",
+        "bugtracker" : "https://github.com/grizzlysmit/Syntax-Highlighters/issues"
     },
     "auth": "zef:grizzlysmit",
-    "version" : "0.1.3",
+    "version" : "0.1.4",
     "tags" : [ "text", "formatting", "syntax", "ANSI", "highlight", "colour", "color" ]
 }

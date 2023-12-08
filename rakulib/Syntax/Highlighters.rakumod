@@ -1,4 +1,4 @@
-unit module Syntax::Highlighters:ver<0.1.2>:auth<Francis Grizzly Smit (grizzlysmit@smit.id.au)>;
+unit module Syntax::Highlighters:ver<0.1.3>:auth<Francis Grizzly Smit (grizzlysmit@smit.id.au)>;
 
 INIT my $debug = False;
 ####################################
@@ -41,7 +41,7 @@ Table of Contents
 
 =NAME Syntax::Highlighters 
 =AUTHOR Francis Grizzly Smit (grizzly@smit.id.au)
-=VERSION 0.1.2
+=VERSION 0.1.3
 =TITLE Syntax::Highlighters
 =SUBTITLE A Raku module to do basic syntax highlighting.
 
